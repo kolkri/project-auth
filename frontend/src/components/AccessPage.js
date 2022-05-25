@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/urls";
+import { user } from "../reducers/user";
 
 export const AccessPage = () => {
   const [secret, setSecret] = useState("");
@@ -9,6 +10,11 @@ export const AccessPage = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const onClickLogout = () => {
+    dispatch(user.actions.setDeleteAccessToken(null));
+    //dispatch(user.actions.setDeleteAccessToken())
+  };
 
   useEffect(() => {
     if (!accessToken) {
@@ -33,5 +39,10 @@ export const AccessPage = () => {
       });
   }, [accessToken]);
 
-  return <h1>{secret}</h1>;
+  return (
+    <>
+      <h1>{secret}</h1>
+      <button onClick={onClickLogout}>Log out</button>
+    </>
+  );
 };

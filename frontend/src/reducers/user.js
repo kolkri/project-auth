@@ -25,5 +25,8 @@ export const user = createSlice({
     setError: (store, action) => {
       store.error = action.payload;
     },
+    setDeleteAccessToken: (store, action) => {
+      store.accessToken = action.payload;
+    },
   },
 });
