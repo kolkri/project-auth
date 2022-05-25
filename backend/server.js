@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    lowercase: true,
+    // lowercase: true,
   },
   accessToken: {
     type: String,
@@ -112,10 +112,10 @@ app.post("/login", async (req, res) => {
     if (userToFind && bcrypt.compareSync(password, userToFind.password)) {
       res.status(201).json({
         response: {
-          userId: newUser._id,
-          username: newUser.username,
-          // email: newUser.email,
-          accessToken: newUser.accessToken,
+          userId: userToFind._id,
+          username: userToFind.username,
+          // email: userToFind.email,
+          accessToken: userToFind.accessToken,
         },
         success: true,
       });
