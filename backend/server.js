@@ -21,11 +21,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  email: {
-    type: String,
-    // required: true,
-    unique: true,
-  },
+  // email: {
+  //   type: String,
+  //   // required: true,
+  //   // pattern: "@mongodb.com$",
+  //   // description: "must be a string and match the regular expression pattern",
+  //   unique: true,
+  // },
   password: {
     type: String,
     required: true,
@@ -64,11 +66,13 @@ const authenticateUser = async (req, res, next) => {
 //Endpoint for logged in page
 app.get("/loginpage", authenticateUser);
 app.get("/loginpage", (req, res) => {
-  res.send("Hello Hippos");
+  const secret = "secret message";
+  res.status(201).json({ response: secret, success: true });
 });
 
 app.post("/signup", async (req, res) => {
-  const { username, email, password } = req.body;
+  // const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
     const salt = bcrypt.genSaltSync();
@@ -79,7 +83,7 @@ app.post("/signup", async (req, res) => {
 
     const newUser = await new User({
       username,
-      email,
+      // email,
       password: bcrypt.hashSync(password, salt),
     }).save();
 
@@ -87,7 +91,7 @@ app.post("/signup", async (req, res) => {
       response: {
         userId: newUser._id,
         username: newUser.username,
-        email: newUser.email,
+        // email: newUser.email,
         accessToken: newUser.accessToken,
       },
       success: true,
@@ -110,7 +114,7 @@ app.post("/login", async (req, res) => {
         response: {
           userId: newUser._id,
           username: newUser.username,
-          email: newUser.email,
+          // email: newUser.email,
           accessToken: newUser.accessToken,
         },
         success: true,

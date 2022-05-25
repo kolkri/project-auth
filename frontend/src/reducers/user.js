@@ -5,7 +5,7 @@ export const user = createSlice({
   initialState: {
     userId: null,
     username: null,
-    email: null,
+    // email: null,
     accessToken: null,
     error: null,
   },
@@ -16,9 +16,9 @@ export const user = createSlice({
     setUsername: (store, action) => {
       store.username = action.payload;
     },
-    setEmail: (store, action) => {
-      store.email = action.payload;
-    },
+    // setEmail: (store, action) => {
+    //   store.email = action.payload;
+    // },
     setAccessToken: (store, action) => {
       store.accessToken = action.payload;
     },
