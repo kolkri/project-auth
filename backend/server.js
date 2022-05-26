@@ -43,6 +43,23 @@ const User = mongoose.model("User", UserSchema);
 
 // Add middlewares to enable cors and json body parsing
 app.use(cors());
+
+// const allowedDomains = [
+// 	'https://my-project-frontend.com',
+// 	'http://localhost:3000',
+// ];
+// app.use(
+// 	cors({
+// 		origin: (origin, callback) => {
+// 			if (allowedDomains.includes(origin)) {
+// 				return callback(null, true);
+// 			} else {
+// 				return callback(new Error('This domain is not allowed'), false);
+// 			}
+// 		},
+// 	})
+// );
+
 app.use(express.json());
 
 // Authenticates user at login
