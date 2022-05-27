@@ -46,7 +46,7 @@ const Button = styled.button`
 `;
 
 const ButtonMobile = styled.button`
-  display:none;
+  display: none;
   cursor: pointer;
   background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
   color: #fff;
@@ -68,7 +68,6 @@ const ButtonMobile = styled.button`
   }
 `;
 
-
 const FormP = styled.p`
   color: #a7a7a7;
   margin: 16px 0;
@@ -80,17 +79,15 @@ const InfoP = styled.p`
 `;
 
 const ErrorMessageContainer = styled.div`
-  position:absolute;
-  bottom: 20px;
-  padding:20px;
-`
+  position: absolute;
+  bottom: 40px;
+  padding: 20px;
+`;
 
 const ErrorMessage = styled.p`
   color: red;
-  align-self:flex-end;
-
-`
-
+  align-self: flex-end;
+`;
 
 // const InputContainer = styled.div`
 //   position: relative;
@@ -129,25 +126,35 @@ const ErrorMessage = styled.p`
 //   }
 // `;
 
+const ShowPassword = styled.div`
+  position: absolute;
+  left: 200px;
+  top: -40;
+  top: 8px;
+`;
+
 export const Signup = () => {
   const [username, setUsername] = useState("");
   // // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
   const [switchMode, setSwitchMode] = useState("login");
   const [isPanelActive, setIsPanelActive] = useState("");
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
 
   const accessToken = useSelector((store) => store.user.accessToken);
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onToggleClick = () => {
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
 
-    setErrorMessage('')
-    setUsername('')
-    setPassword('')
+  const onToggleClick = () => {
+    setErrorMessage("");
+    setUsername("");
+    setPassword("");
     if (switchMode === "login") {
       setSwitchMode("signup");
       setIsPanelActive(true);
@@ -187,7 +194,7 @@ export const Signup = () => {
             dispatch(user.actions.setError(null));
           });
         } else {
-          setErrorMessage(data.response)
+          setErrorMessage(data.response);
           batch(() => {
             dispatch(user.actions.setUserId(null));
             dispatch(user.actions.setUsername(null));
@@ -202,10 +209,10 @@ export const Signup = () => {
   return (
     <SectionContainer>
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
-      <div className="signup-container sign-up-container">
-            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-                Login
-              </ButtonMobile>
+        <div className="signup-container sign-up-container">
+          <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+            Login
+          </ButtonMobile>
           <FormContainer onSubmit={onFormSubmit}>
             <h1>Create account</h1>
             <FormP>
@@ -235,22 +242,25 @@ export const Signup = () => {
               <input
                 className="input"
                 id="password"
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label className="user-label" htmlFor="password">
                 Password
               </label>
+              <ShowPassword>
+                <button onClick={togglePassword}> 👁️ </button>
+              </ShowPassword>
             </div>
             <Button type="submit" Mode>
               Submit
             </Button>
-          
+
             <ErrorMessageContainer>
               <ErrorMessage>{errorMessage}</ErrorMessage>
-           </ErrorMessageContainer>
-            
+            </ErrorMessageContainer>
+
             {/* <label htmlFor="login">Log in</label>
           <input
             id="login"
@@ -262,9 +272,9 @@ export const Signup = () => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
-              <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-                signup
-              </ButtonMobile>
+            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+              signup
+            </ButtonMobile>
             <h1>Log in</h1>
             <FormP>some text here</FormP>
             <div className="input-container">
@@ -274,7 +284,9 @@ export const Signup = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              <label className="user-label" htmlFor="username">Username</label>
+              <label className="user-label" htmlFor="username">
+                Username
+              </label>
             </div>
             {/* <label htmlFor="email">Email</label>
         <input
@@ -286,7 +298,7 @@ export const Signup = () => {
             <div className="input-container">
               <input
                 className="input"
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -294,11 +306,13 @@ export const Signup = () => {
                 Password
               </label>
             </div>
-            <Button type="submit" Mode>Login</Button>
+            <Button type="submit" Mode>
+              Login
+            </Button>
             <ErrorMessageContainer>
               <ErrorMessage>{errorMessage}</ErrorMessage>
             </ErrorMessageContainer>
-        
+
             {/* <label htmlFor="signup">Sign up</label>
           <input
             id="signup"
@@ -309,7 +323,6 @@ export const Signup = () => {
           </FormContainer>
         </div>
 
-        
         <div className="overlay-container">
           <div className="overlay">
             <div className="panel panel-left">
@@ -318,20 +331,17 @@ export const Signup = () => {
               <Button onClick={onToggleClick} id="login">
                 Login
               </Button>
-              
             </div>
             <div className="panel panel-right">
-            <h1>Don't have an account? click on sign up</h1>
+              <h1>Don't have an account? click on sign up</h1>
               <InfoP>Create account</InfoP>
               <Button onClick={onToggleClick} id="signup">
                 signup
               </Button>
-      
             </div>
           </div>
         </div>
       </div>
     </SectionContainer>
-
   );
 };
