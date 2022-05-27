@@ -110,16 +110,19 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [switchMode, setSwitchMode] = useState("login");
   const [isPanelActive, setIsPanelActive] = useState("");
+  const [errorMessage, setErrorMessage] = useState('')
 
   const accessToken = useSelector((store) => store.user.accessToken);
-  const errorMessage = useSelector((store) => store.user.error);
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onToggleClick = () => {
 
-    
+    setErrorMessage('')
+    setUsername('')
+    setPassword('')
     if (switchMode === "login") {
       setSwitchMode("signup");
       setIsPanelActive(true);
@@ -150,10 +153,6 @@ export const Signup = () => {
     fetch(API_URL(switchMode), options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-      
-        
-
         if (data.success) {
           batch(() => {
             dispatch(user.actions.setUserId(data.response.userId));
@@ -163,6 +162,7 @@ export const Signup = () => {
             dispatch(user.actions.setError(null));
           });
         } else {
+          setErrorMessage(data.response)
           batch(() => {
             dispatch(user.actions.setUserId(null));
             dispatch(user.actions.setUsername(null));
