@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/urls";
 import { user } from "../reducers/user";
-import styled from "styled-components";
+import styled from "styled-components/macro";
+
 
 const Title = styled.h1`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 44px;
 `;
 
@@ -29,11 +30,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255,255,255, 0.9);
+  border-radius: 10%;
 `;
 
 const LogOutButton = styled.button`
   width: fit-content;
-`;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border:none;
+  background-color:#8338EC;
+  color:#fff;
+  font-size:14px;
+  `;
 const ImageContainer = styled.div`
   height: 100%;
   display: flex;
@@ -44,8 +54,6 @@ const ImageContainer = styled.div`
 const ImageForm = styled.div`
   width: 250px;
   padding: 20px;
-  background: #fff;
-  border: 2px dashed #555;
 `;
 
 const ImageInput = styled.input`
@@ -58,26 +66,35 @@ const ImageLabel = styled.label`
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #333;
+  background: #8338EC;
   color: #fff;
   font-size: 15px;
   font-family: "Open Sans", sans-serif;
   text-transform: Uppercase;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
 `;
 
+const ImageFrame = styled.div`
+  display:flex;
+  justify-content: center;
+`
+
 const Image = styled.img`
-  width: 100%;
-  display: none;
+  width: 130px;
+  height: 130px;
   margin-top: 10px;
+  border-radius:50%;
+  object-fit: cover;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 export const AccessPage = () => {
   const [secret, setSecret] = useState("");
   const [profileImg, setProfileImg] = useState(null);
 
   const accessToken = useSelector((store) => store.user.accessToken);
+  const name = useSelector((store) => store.user.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -127,11 +144,11 @@ export const AccessPage = () => {
   return (
     <Main>
       <Container>
-        <Title>{secret}</Title>
+        <Title>Welcome, {name}!</Title>
         <ImageContainer>
           <ImageForm>
             <ImageLabel htmlFor="profileImage">
-              Upload your profile image
+              Add profile image 
             </ImageLabel>
             <ImageInput
               type="file"
@@ -139,9 +156,9 @@ export const AccessPage = () => {
               accept="image/*"
               onChange={showPreview}
             />
-            <div>
+            <ImageFrame>
               <Image id="profileImagePreview" />
-            </div>
+            </ImageFrame>
           </ImageForm>
         </ImageContainer>
         <LogOutButton onClick={onClickLogout}>Log out</LogOutButton>
