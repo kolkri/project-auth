@@ -45,6 +45,30 @@ const Button = styled.button`
   }
 `;
 
+const ButtonMobile = styled.button`
+  display:none;
+  cursor: pointer;
+  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
+  color: #fff;
+  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 20px;
+  transition: transform 80ms ease-in;
+  padding: 12px 24px;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+
 const FormP = styled.p`
   color: #a7a7a7;
   margin: 16px 0;
@@ -57,7 +81,7 @@ const InfoP = styled.p`
 
 const ErrorMessageContainer = styled.div`
   position:absolute;
-  bottom: 40px;
+  bottom: 20px;
   padding:20px;
 `
 
@@ -66,6 +90,7 @@ const ErrorMessage = styled.p`
   align-self:flex-end;
 
 `
+
 
 // const InputContainer = styled.div`
 //   position: relative;
@@ -178,6 +203,9 @@ export const Signup = () => {
     <SectionContainer>
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
       <div className="signup-container sign-up-container">
+            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+                Login
+              </ButtonMobile>
           <FormContainer onSubmit={onFormSubmit}>
             <h1>Create account</h1>
             <FormP>
@@ -234,6 +262,9 @@ export const Signup = () => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
+              <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+                signup
+              </ButtonMobile>
             <h1>Log in</h1>
             <FormP>some text here</FormP>
             <div className="input-container">
@@ -301,5 +332,6 @@ export const Signup = () => {
         </div>
       </div>
     </SectionContainer>
+
   );
 };
