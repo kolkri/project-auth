@@ -55,6 +55,18 @@ const InfoP = styled.p`
   margin: 16px 0;
 `;
 
+const ErrorMessageContainer = styled.div`
+  position:absolute;
+  bottom: 40px;
+  padding:20px;
+`
+
+const ErrorMessage = styled.p`
+  color: red;
+  align-self:flex-end;
+
+`
+
 // const InputContainer = styled.div`
 //   position: relative;
 // `;
@@ -96,14 +108,18 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   // // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [switchMode, setSwitchMode] = useState("signup");
+  const [switchMode, setSwitchMode] = useState("login");
   const [isPanelActive, setIsPanelActive] = useState("");
+
   const accessToken = useSelector((store) => store.user.accessToken);
+  const errorMessage = useSelector((store) => store.user.error);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onToggleClick = () => {
+
+    
     if (switchMode === "login") {
       setSwitchMode("signup");
       setIsPanelActive(true);
@@ -135,6 +151,8 @@ export const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+      
+        
 
         if (data.success) {
           batch(() => {
@@ -159,50 +177,7 @@ export const Signup = () => {
   return (
     <SectionContainer>
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
-        <div className="signup-container login-container">
-          <FormContainer onSubmit={onFormSubmit}>
-            <h1>Log in</h1>
-            <FormP>some text here</FormP>
-            <div className="input-container">
-              Username
-              <input
-                className="input"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <label className="user-label" htmlFor="username"></label>
-            </div>
-            {/* <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /> */}
-            <div className="input-container">
-              <input
-                className="input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <label className="user-label" htmlFor="password">
-                Password
-              </label>
-            </div>
-            <Button type="submit">Login</Button>
-            {/* <label htmlFor="signup">Sign up</label>
-          <input
-            id="signup"
-            type="radio"
-            checked={switchMode === "signup"}
-            onChange={() => setSwitchMode("signup")}
-          /> */}
-          </FormContainer>
-        </div>
-
-        <div className="signup-container login-container">
+      <div className="signup-container sign-up-container">
           <FormContainer onSubmit={onFormSubmit}>
             <h1>Create account</h1>
             <FormP>
@@ -243,6 +218,11 @@ export const Signup = () => {
             <Button type="submit" Mode>
               Submit
             </Button>
+          
+            <ErrorMessageContainer>
+              <ErrorMessage>{errorMessage}</ErrorMessage>
+           </ErrorMessageContainer>
+            
             {/* <label htmlFor="login">Log in</label>
           <input
             id="login"
@@ -252,21 +232,70 @@ export const Signup = () => {
           /> */}
           </FormContainer>
         </div>
+        <div className="signup-container login-container">
+          <FormContainer onSubmit={onFormSubmit}>
+            <h1>Log in</h1>
+            <FormP>some text here</FormP>
+            <div className="input-container">
+              <input
+                className="input"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label className="user-label" htmlFor="username">Username</label>
+            </div>
+            {/* <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        /> */}
+            <div className="input-container">
+              <input
+                className="input"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label className="user-label" htmlFor="password">
+                Password
+              </label>
+            </div>
+            <Button type="submit" Mode>Login</Button>
+            <ErrorMessageContainer>
+              <ErrorMessage>{errorMessage}</ErrorMessage>
+            </ErrorMessageContainer>
+        
+            {/* <label htmlFor="signup">Sign up</label>
+          <input
+            id="signup"
+            type="radio"
+            checked={switchMode === "signup"}
+            onChange={() => setSwitchMode("signup")}
+          /> */}
+          </FormContainer>
+        </div>
+
+        
         <div className="overlay-container">
           <div className="overlay">
             <div className="panel panel-left">
-              <h1>Don't have an account? click on sign up</h1>
-              <InfoP>Create account</InfoP>
-              <Button onClick={onToggleClick} id="signup">
-                signup
-              </Button>
-            </div>
-            <div className="panel panel-right">
               <h1>Already have a user?</h1>
               <InfoP>Click here to login instead</InfoP>
               <Button onClick={onToggleClick} id="login">
                 Login
               </Button>
+              
+            </div>
+            <div className="panel panel-right">
+            <h1>Don't have an account? click on sign up</h1>
+              <InfoP>Create account</InfoP>
+              <Button onClick={onToggleClick} id="signup">
+                signup
+              </Button>
+      
             </div>
           </div>
         </div>

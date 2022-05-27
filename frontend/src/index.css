@@ -49,7 +49,7 @@ body {
   z-index: 1;
 }
 
-.container.right-panel-active .signup-container {
+.container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -160,13 +160,13 @@ input {
   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* input:valid, */
+input:valid,
 .input:focus {
   outline: none;
   border: 2px solid #1a73e8;
 }
 
-/* input:valid ~ label, */
+input:valid ~ label,
 .input:focus ~ label {
   transform: translateY(-50%) scale(0.8);
   background-color: #fff;
