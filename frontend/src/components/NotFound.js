@@ -28,7 +28,7 @@ export const NotFound = () => {
 		<Container>
 			<Title>
 				<h1>404 page not found!</h1>
-				<Link to='/'>Go to Home </Link>
+				<Link to='/'>Go back to start </Link>
 			</Title>
 		</Container>
 	);
