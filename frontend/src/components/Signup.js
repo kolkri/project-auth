@@ -1,160 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import styled from "styled-components/macro";
 import visibleEye from "../Assets/visible-eye.png";
 import unVisibleEye from "../Assets/unvisible-eye.png";
 import { API_URL } from "../utils/urls";
 
 import { user } from "../reducers/user";
 
-const SectionContainer = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  margin: -20px 0 50px;
-`;
+import {
+  SectionContainer,
+  FormContainer,
+  Button,
+  ButtonMobile,
+  FormP,
+  InfoP,
+  ErrorMessageContainer,
+  ErrorMessage,
+  ShowPassword,
+  EyeButton,
+  EyeSymbol,
+} from "../styledComponents/styledSignup";
 
-const FormContainer = styled.form`
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
-  text-align: center;
-`;
-
-const Button = styled.button`
-  cursor: pointer;
-  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
-  color: #fff;
-  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 20px;
-  transition: transform 80ms ease-in;
-  padding: 12px 24px;
-
-  &:active {
-    transform: scale(0.95);
-  }
-`;
-
-const ButtonMobile = styled.button`
-  display: none;
-  cursor: pointer;
-  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
-  color: #fff;
-  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 20px;
-  transition: transform 80ms ease-in;
-  padding: 12px 24px;
-
-  &:active {
-    transform: scale(0.95);
-  }
-
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
-const FormP = styled.p`
-  color: #a7a7a7;
-  margin: 16px 0;
-`;
-
-const InfoP = styled.p`
-  color: #fff;
-  margin: 16px 0;
-`;
-
-const ErrorMessageContainer = styled.div`
-  position: absolute;
-  bottom: 40px;
-  padding: 20px;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  align-self: flex-end;
-`;
-
-// const InputContainer = styled.div`
-//   position: relative;
-// `;
-
-// const UserLabel = styled.label`
-//   position: absolute;
-//   left: 15px;
-//   color: #e8e8e8;
-//   pointer-events: none;
-//   transform: translateY(1rem);
-//   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-// `;
-
-// const UserInput = styled.input`
-//   border: solid 1.5px #9e9e9e;
-//   border-radius: 1rem;
-//   background: none;
-//   padding: 1rem;
-//   font-size: 1rem;
-//   color: #f5f5f5;
-//   transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
-//   &:focus,
-//   &:valid {
-//     outline: none;
-//     border: 1.5px solid #1a73e8;
-//   }
-
-//   &:focus ~ label,
-//   &:valid ~ label {
-//     transform: translateY(-50%) scale(0.8);
-//     background-color: #212121;
-//     padding: 0 0.2em;
-//     color: #2196f3;
-//   }
-// `;
-
-const ShowPassword = styled.div`
-  position: absolute;
-  left: 200px;
-  top: -40;
-  top: 8px;
-`;
-
-const EyeButton = styled.button`
-  border: none;
-  background-color: #fff;
-  cursor: pointer;
-`;
-
-const EyeSymbol = styled.img`
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -5px;
-  left: 1px;
-
-  &:active,
-  &:hover {
-    opacity: 0.5;
-  }
-`;
-
-export const Signup = () => {
+export const Signup = ({ show }) => {
   const [username, setUsername] = useState("");
   // // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -241,8 +109,7 @@ export const Signup = () => {
           <FormContainer onSubmit={onFormSubmit}>
             <h1>Create account</h1>
             <FormP>
-              Welcome! make sure to create an account to be able to se our
-              secret
+              Welcome! make sure to create an account to see our secret page!
             </FormP>
             <div className="input-container">
               <input
@@ -251,6 +118,7 @@ export const Signup = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
               <label className="user-label" htmlFor="username">
                 Username
@@ -267,7 +135,9 @@ export const Signup = () => {
               <input
                 className="input"
                 id="password"
-                type={passwordShown ? "text" : "password"}
+                type={!passwordShown ? "password" : "text"}
+                show={show}
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -283,18 +153,9 @@ export const Signup = () => {
             <Button type="submit" Mode>
               Submit
             </Button>
-
             <ErrorMessageContainer>
               <ErrorMessage>{errorMessage}</ErrorMessage>
             </ErrorMessageContainer>
-
-            {/* <label htmlFor="login">Log in</label>
-          <input
-            id="login"
-            type="radio"
-            checked={switchMode === "login"}
-            onChange={() => setSwitchMode("login")} 
-          /> */}
           </FormContainer>
         </div>
         <div className="signup-container login-container">
@@ -302,14 +163,15 @@ export const Signup = () => {
             <ButtonMobile onClick={onToggleClick} id="signup" Mode>
               signup
             </ButtonMobile>
-            <h1>Log in</h1>
-            <FormP>some text here</FormP>
+            <h1>Login</h1>
+            <FormP>Welcome Back!</FormP>
             <div className="input-container">
               <input
                 className="input"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
               <label className="user-label" htmlFor="username">
                 Username
@@ -326,12 +188,19 @@ export const Signup = () => {
               <input
                 className="input"
                 type={passwordShown ? "text" : "password"}
+                show={show}
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label className="user-label" htmlFor="password">
                 Password
               </label>
+              <ShowPassword>
+                <EyeButton onClick={togglePassword}>
+                  <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
+                </EyeButton>
+              </ShowPassword>
             </div>
             <Button type="submit" Mode>
               Login
@@ -339,29 +208,21 @@ export const Signup = () => {
             <ErrorMessageContainer>
               <ErrorMessage>{errorMessage}</ErrorMessage>
             </ErrorMessageContainer>
-
-            {/* <label htmlFor="signup">Sign up</label>
-          <input
-            id="signup"
-            type="radio"
-            checked={switchMode === "signup"}
-            onChange={() => setSwitchMode("signup")}
-          /> */}
           </FormContainer>
         </div>
 
         <div className="overlay-container">
           <div className="overlay">
             <div className="panel panel-left">
-              <h1>Already have a user?</h1>
-              <InfoP>Click here to login instead</InfoP>
+              <h2>Already have a user?</h2>
+              <InfoP>Please go to login instead</InfoP>
               <Button onClick={onToggleClick} id="login">
                 Login
               </Button>
             </div>
             <div className="panel panel-right">
-              <h1>Don't have an account? click on sign up</h1>
-              <InfoP>Create account</InfoP>
+              <h2>Don't have an account?</h2>
+              <InfoP>Click on signup to create one</InfoP>
               <Button onClick={onToggleClick} id="signup">
                 signup
               </Button>

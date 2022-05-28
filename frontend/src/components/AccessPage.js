@@ -3,91 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../utils/urls";
 import { user } from "../reducers/user";
-import styled from "styled-components/macro";
 
-const Title = styled.h1`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 44px;
-`;
+import AddButton from "../Assets/add.png";
+import { Button } from "../styledComponents/styledSignup";
+import {
+  Title,
+  SubTitle,
+  Main,
+  Container,
+  ImageContainer,
+  ImageForm,
+  ImageInput,
+  ImageFrame,
+  Image,
+  ImageLabel,
+  AddImg,
+} from "../styledComponents/styledAccessPage";
 
-const Main = styled.main`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Container = styled.div`
-  width: 300px;
-  height: 400px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10%;
-`;
-
-const LogOutButton = styled.button`
-  width: fit-content;
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  background-color: #8338ec;
-  color: #fff;
-  font-size: 14px;
-`;
-const ImageContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ImageForm = styled.div`
-  width: 250px;
-  padding: 20px;
-`;
-
-const ImageInput = styled.input`
-  display: none;
-`;
-
-const ImageLabel = styled.label`
-  display: block;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background: #8338ec;
-  color: #fff;
-  font-size: 15px;
-  font-family: "Open Sans", sans-serif;
-  text-transform: Uppercase;
-  font-weight: 600;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
-const ImageFrame = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Image = styled.img`
-  width: 130px;
-  height: 130px;
-  margin-top: 10px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
 export const AccessPage = () => {
   const [secret, setSecret] = useState("");
   const [profileImg, setProfileImg] = useState(null);
@@ -146,7 +78,10 @@ export const AccessPage = () => {
         <Title>Welcome, {name}!</Title>
         <ImageContainer>
           <ImageForm>
-            <ImageLabel htmlFor="profileImage">Add profile image</ImageLabel>
+            <SubTitle>Add profile image</SubTitle>
+            <ImageLabel htmlFor="profileImage">
+              <AddImg src={AddButton} />
+            </ImageLabel>
             <ImageInput
               type="file"
               id="profileImage"
@@ -158,7 +93,9 @@ export const AccessPage = () => {
             </ImageFrame>
           </ImageForm>
         </ImageContainer>
-        <LogOutButton onClick={onClickLogout}>Log out</LogOutButton>
+        <Button onClick={onClickLogout} Mode>
+          Logout
+        </Button>
       </Container>
     </Main>
   );

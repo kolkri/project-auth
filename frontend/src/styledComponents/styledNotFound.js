@@ -1,23 +1,27 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 
 export const Title = styled.h1`
-	padding: 20px;
-	font-family: 'Montserrat';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 44px;
-	text-align: center;
+  font-size: 80px;
+  color: #fff;
 `;
 
-export const Container = styled.div`
-	width: 300px;
-	height: 400px;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	padding: 20px;
-	margin: 2rem auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: 10%;
+export const SubTitle = styled.h2`
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 8px;
+`;
+
+export const Img = styled.img`
+  width: 500px;
+
+  @media screen and (max-width: 668px) {
+    width: 350px;
+  }
+`;
+
+export const Container = styled.section`
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
