@@ -5,7 +5,6 @@ import { API_URL } from "../utils/urls";
 import { user } from "../reducers/user";
 import styled from "styled-components/macro";
 
-
 const Title = styled.h1`
   font-family: "Montserrat";
   font-style: normal;
@@ -30,7 +29,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(255,255,255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10%;
 `;
 
@@ -39,11 +38,11 @@ const LogOutButton = styled.button`
   border-radius: 20px;
   padding: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border:none;
-  background-color:#8338EC;
-  color:#fff;
-  font-size:14px;
-  `;
+  border: none;
+  background-color: #8338ec;
+  color: #fff;
+  font-size: 14px;
+`;
 const ImageContainer = styled.div`
   height: 100%;
   display: flex;
@@ -66,7 +65,7 @@ const ImageLabel = styled.label`
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #8338EC;
+  background: #8338ec;
   color: #fff;
   font-size: 15px;
   font-family: "Open Sans", sans-serif;
@@ -77,15 +76,15 @@ const ImageLabel = styled.label`
 `;
 
 const ImageFrame = styled.div`
-  display:flex;
+  display: flex;
   justify-content: center;
-`
+`;
 
 const Image = styled.img`
   width: 130px;
   height: 130px;
   margin-top: 10px;
-  border-radius:50%;
+  border-radius: 50%;
   object-fit: cover;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -147,9 +146,7 @@ export const AccessPage = () => {
         <Title>Welcome, {name}!</Title>
         <ImageContainer>
           <ImageForm>
-            <ImageLabel htmlFor="profileImage">
-              Add profile image 
-            </ImageLabel>
+            <ImageLabel htmlFor="profileImage">Add profile image</ImageLabel>
             <ImageInput
               type="file"
               id="profileImage"

@@ -29,5 +29,8 @@ export const user = createSlice({
       store.accessToken = action.payload;
       //store.accessToken = null
     },
+    setPasswordShown: (store, action) => {
+      store.passwordShown = action.payload;
+    },
   },
 });

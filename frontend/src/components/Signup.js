@@ -3,8 +3,10 @@ import { useSelector, useDispatch, batch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
 import styled from "styled-components/macro";
-
+import visibleEye from "../Assets/visible-eye.png";
+import unVisibleEye from "../Assets/unvisible-eye.png";
 import { API_URL } from "../utils/urls";
+
 import { user } from "../reducers/user";
 
 const SectionContainer = styled.section`
@@ -133,6 +135,25 @@ const ShowPassword = styled.div`
   top: 8px;
 `;
 
+const EyeButton = styled.button`
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+`;
+
+const EyeSymbol = styled.img`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -5px;
+  left: 1px;
+
+  &:active,
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
 export const Signup = () => {
   const [username, setUsername] = useState("");
   // // const [email, setEmail] = useState("");
@@ -192,6 +213,9 @@ export const Signup = () => {
             // dispatch(user.actions.setEmail(data.response.email));
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
+            dispatch(
+              user.actions.setPasswordShown(data.response.passwordShown)
+            );
           });
         } else {
           setErrorMessage(data.response);
@@ -201,6 +225,7 @@ export const Signup = () => {
             // dispatch(user.actions.setEmail(null));
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
+            dispatch(user.actions.setPasswordShown(null));
           });
         }
       });
@@ -250,7 +275,9 @@ export const Signup = () => {
                 Password
               </label>
               <ShowPassword>
-                <button onClick={togglePassword}> 👁️ </button>
+                <EyeButton onClick={togglePassword}>
+                  <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
+                </EyeButton>
               </ShowPassword>
             </div>
             <Button type="submit" Mode>
