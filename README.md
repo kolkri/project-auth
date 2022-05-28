@@ -1,8 +1,10 @@
 # Project Auth API
 
+A project built by Kristiina Kolu, Marianne Ardin and Mimmi Fordal Uddin.
+
 This was the project for week 20 of the Technigo bootcamp.
 The project has both back- and frontend.
-We built the backend using API, Postman, MongoDB and Heroku. In the frontend we worked in React with branches.
+We built the backend using API, Postman, MongoDB and Heroku. In the frontend we worked in React and Redux/toolkit with branches.
 
 Requirements included:
 
