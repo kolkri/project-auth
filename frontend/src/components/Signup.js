@@ -45,19 +45,28 @@ const Button = styled.button`
   }
 `;
 
+const MobileContainer = styled.div`
+  display: none;  
+  @media (max-width: 768px) {
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+`
+
 const ButtonMobile = styled.button`
   display: none;
   cursor: pointer;
-  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
-  color: #fff;
-  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
+  color: #1a73e8;
   font-size: 12px;
+  border:none;
+  background-color:#fff;
   letter-spacing: 1px;
   font-weight: bold;
   text-transform: uppercase;
-  border-radius: 20px;
   transition: transform 80ms ease-in;
-  padding: 12px 24px;
 
   &:active {
     transform: scale(0.95);
@@ -210,10 +219,13 @@ export const Signup = () => {
     <SectionContainer>
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
         <div className="signup-container sign-up-container">
-          <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-            Login
-          </ButtonMobile>
           <FormContainer onSubmit={onFormSubmit}>
+          <MobileContainer>
+            <p>Have an account already?</p>
+            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+              Login
+            </ButtonMobile>
+          </MobileContainer>
             <h1>Create account</h1>
             <FormP>
               Welcome! make sure to create an account to be able to se our
@@ -272,9 +284,12 @@ export const Signup = () => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
+          <MobileContainer>
+            <p>Don't have an account?</p>
             <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-              signup
+              Signup
             </ButtonMobile>
+          </MobileContainer>
             <h1>Log in</h1>
             <FormP>some text here</FormP>
             <div className="input-container">
