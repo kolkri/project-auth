@@ -60,7 +60,6 @@ export const Signup = () => {
   }, [accessToken, navigate]);
 
   const onFormSubmit = (e) => {
-    console.log("formsubmission activates");
     e.preventDefault();
     // console.log('form submitted');
     const options = {
@@ -98,12 +97,12 @@ export const Signup = () => {
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
         <div className="signup-container sign-up-container">
           <FormContainer onSubmit={onFormSubmit}>
-            <MobileContainer>
-              <p>Have an account already?</p>
-              <ButtonMobile onClick={onToggleClick} id="login" Mode>
-                Login
-              </ButtonMobile>
-            </MobileContainer>
+          <MobileContainer>
+            <p>Have an account already?</p>
+            <ButtonMobile type="button" onClick={onToggleClick} id="login" Mode>
+              Login
+            </ButtonMobile>
+          </MobileContainer>
             <h1>Create account</h1>
             <FormP>
               Welcome! make sure to create an account to see our secret page!
@@ -134,7 +133,7 @@ export const Signup = () => {
                 Password
               </label>
               <ShowPassword>
-                <EyeButton onClick={togglePassword}>
+                <EyeButton type="button" onClick={togglePassword}>
                   <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
                 </EyeButton>
               </ShowPassword>
@@ -149,12 +148,12 @@ export const Signup = () => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
-            <MobileContainer>
-              <p>Don't have an account?</p>
-              <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-                Signup
-              </ButtonMobile>
-            </MobileContainer>
+          <MobileContainer>
+            <p>Don't have an account?</p>
+            <ButtonMobile type="button" onClick={onToggleClick} id="signup" Mode>
+              Signup
+            </ButtonMobile>
+          </MobileContainer>
             <h1>Log in</h1>
             <FormP>Welcome Back!</FormP>
             <div className="input-container">
@@ -181,7 +180,7 @@ export const Signup = () => {
                 Password
               </label>
               <ShowPassword>
-                <EyeButton onClick={togglePassword}>
+                <EyeButton type="button" onClick={togglePassword}>
                   <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
                 </EyeButton>
               </ShowPassword>
@@ -200,14 +199,14 @@ export const Signup = () => {
             <div className="panel panel-left">
               <h2>Already have a user?</h2>
               <InfoP>Please go to login instead</InfoP>
-              <Button onClick={onToggleClick} id="login">
+              <Button type="button" onClick={onToggleClick} id="login">
                 Login
               </Button>
             </div>
             <div className="panel panel-right">
               <h2>Don't have an account?</h2>
               <InfoP>Click on signup to create one</InfoP>
-              <Button onClick={onToggleClick} id="signup">
+              <Button type="button" onClick={onToggleClick} id="signup">
                 signup
               </Button>
             </div>
