@@ -63,7 +63,7 @@ export const MobileContainer = styled.div`
 export const ButtonMobile = styled.button`
   display: none;
   cursor: pointer;
-  color: #1a73e8;
+  color: #4b5b7c;
   font-size: 12px;
   border: none;
   background-color: #fff;
