@@ -13,6 +13,7 @@ import {
   Button,
   ButtonMobile,
   MobileContainer,
+  FormPMobile,
   FormP,
   InfoP,
   ErrorMessageContainer,
@@ -97,7 +98,7 @@ export const Signup = () => {
         <div className="signup-container sign-up-container">
           <FormContainer onSubmit={onFormSubmit}>
             <MobileContainer>
-              <p>Have an account already?</p>
+              <FormPMobile>Have an account already?</FormPMobile>
               <ButtonMobile
                 type="button"
                 onClick={onToggleClick}
@@ -108,9 +109,7 @@ export const Signup = () => {
               </ButtonMobile>
             </MobileContainer>
             <h1>Create account</h1>
-            <FormP>
-              Welcome! make sure to create an account to see our secret page!
-            </FormP>
+            <FormP>Welcome to our page!</FormP>
             <div className="input-container">
               <input
                 className="input"
@@ -153,7 +152,7 @@ export const Signup = () => {
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
             <MobileContainer>
-              <p>Don't have an account?</p>
+              <FormPMobile>Don't have an account?</FormPMobile>
               <ButtonMobile
                 type="button"
                 onClick={onToggleClick}

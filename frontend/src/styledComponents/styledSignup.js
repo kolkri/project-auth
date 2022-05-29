@@ -81,6 +81,11 @@ export const ButtonMobile = styled.button`
   }
 `;
 
+export const FormPMobile = styled.p`
+  color: #a7a7a7;
+  font-size: 14px;
+`;
+
 export const FormP = styled.p`
   color: #a7a7a7;
   margin: 16px 0;
@@ -95,6 +100,10 @@ export const ErrorMessageContainer = styled.div`
   position: absolute;
   bottom: 40px;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 export const ErrorMessage = styled.p`
@@ -120,7 +129,7 @@ export const EyeSymbol = styled.img`
   height: 40px;
   position: absolute;
   top: -5px;
-  left: 1px;
+  left: -22px;
   opacity: 0.5;
 
   &:active,
