@@ -109,8 +109,7 @@ export const ErrorMessageContainer = styled.div`
 
 export const ErrorMessage = styled.p`
   color: red;
-  align-self: flex-end;
-  text-align: center;
+  align-self: center;
 `;
 
 export const ShowPassword = styled.div`

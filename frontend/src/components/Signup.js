@@ -37,7 +37,6 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const togglePassword = () => {
-    console.log("togglepassword activates");
     setPasswordShown(!passwordShown);
   };
 
@@ -45,6 +44,7 @@ export const Signup = () => {
     setErrorMessage("");
     setUsername("");
     setPassword("");
+    setPasswordShown(false);
     if (switchMode === "login") {
       setSwitchMode("signup");
       setIsPanelActive(true);
