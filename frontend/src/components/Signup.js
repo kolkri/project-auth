@@ -38,6 +38,7 @@ export const Signup = ({ show }) => {
   const navigate = useNavigate();
 
   const togglePassword = () => {
+    console.log('togglepassword activates')
     setPasswordShown(!passwordShown);
   };
 
@@ -61,6 +62,7 @@ export const Signup = ({ show }) => {
   }, [accessToken, navigate]);
 
   const onFormSubmit = (e) => {
+    console.log('formsubmission activates')
     e.preventDefault();
     // console.log('form submitted');
     const options = {
@@ -82,9 +84,9 @@ export const Signup = ({ show }) => {
             // dispatch(user.actions.setEmail(data.response.email));
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
-            dispatch(
-              user.actions.setPasswordShown(data.response.passwordShown)
-            );
+            // dispatch(
+            //   user.actions.setPasswordShown(data.response.passwordShown)
+            // );
           });
         } else {
           setErrorMessage(data.response);
@@ -94,7 +96,7 @@ export const Signup = ({ show }) => {
             // dispatch(user.actions.setEmail(null));
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
-            dispatch(user.actions.setPasswordShown(null));
+            // dispatch(user.actions.setPasswordShown(null));
           });
         }
       });
@@ -107,7 +109,7 @@ export const Signup = ({ show }) => {
           <FormContainer onSubmit={onFormSubmit}>
           <MobileContainer>
             <p>Have an account already?</p>
-            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+            <ButtonMobile onClick={onToggleClick} id="login" Mode>
               Login
             </ButtonMobile>
           </MobileContainer>
@@ -141,7 +143,7 @@ export const Signup = ({ show }) => {
                 id="password"
                 type={!passwordShown ? "password" : "text"}
                 show={show}
-                required
+                // required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />

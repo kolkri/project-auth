@@ -2,6 +2,7 @@ import styled from "styled-components/macro";
 
 export const Title = styled.h1`
   font-size: 28px;
+  text-align: center;
 `;
 
 export const SubTitle = styled.h2`
