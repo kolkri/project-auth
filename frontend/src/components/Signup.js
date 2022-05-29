@@ -23,7 +23,7 @@ import {
   EyeSymbol,
 } from "../styledComponents/styledSignup";
 
-export const Signup = ({ show }) => {
+export const Signup = () => {
   const [username, setUsername] = useState("");
   // // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +62,6 @@ export const Signup = ({ show }) => {
   }, [accessToken, navigate]);
 
   const onFormSubmit = (e) => {
-    console.log('formsubmission activates')
     e.preventDefault();
     // console.log('form submitted');
     const options = {
@@ -84,9 +83,6 @@ export const Signup = ({ show }) => {
             // dispatch(user.actions.setEmail(data.response.email));
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
-            // dispatch(
-            //   user.actions.setPasswordShown(data.response.passwordShown)
-            // );
           });
         } else {
           setErrorMessage(data.response);
@@ -96,7 +92,6 @@ export const Signup = ({ show }) => {
             // dispatch(user.actions.setEmail(null));
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
-            // dispatch(user.actions.setPasswordShown(null));
           });
         }
       });
@@ -109,7 +104,7 @@ export const Signup = ({ show }) => {
           <FormContainer onSubmit={onFormSubmit}>
           <MobileContainer>
             <p>Have an account already?</p>
-            <ButtonMobile onClick={onToggleClick} id="login" Mode>
+            <ButtonMobile type="button" onClick={onToggleClick} id="login" Mode>
               Login
             </ButtonMobile>
           </MobileContainer>
@@ -142,7 +137,6 @@ export const Signup = ({ show }) => {
                 className="input"
                 id="password"
                 type={!passwordShown ? "password" : "text"}
-                show={show}
                 // required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -151,7 +145,7 @@ export const Signup = ({ show }) => {
                 Password
               </label>
               <ShowPassword>
-                <EyeButton onClick={togglePassword}>
+                <EyeButton type="button" onClick={togglePassword}>
                   <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
                 </EyeButton>
               </ShowPassword>
@@ -168,7 +162,7 @@ export const Signup = ({ show }) => {
           <FormContainer onSubmit={onFormSubmit}>
           <MobileContainer>
             <p>Don't have an account?</p>
-            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+            <ButtonMobile type="button" onClick={onToggleClick} id="signup" Mode>
               Signup
             </ButtonMobile>
           </MobileContainer>
@@ -197,7 +191,7 @@ export const Signup = ({ show }) => {
               <input
                 className="input"
                 type={passwordShown ? "text" : "password"}
-                show={show}
+                
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -206,7 +200,7 @@ export const Signup = ({ show }) => {
                 Password
               </label>
               <ShowPassword>
-                <EyeButton onClick={togglePassword}>
+                <EyeButton type="button" onClick={togglePassword}>
                   <EyeSymbol src={passwordShown ? unVisibleEye : visibleEye} />
                 </EyeButton>
               </ShowPassword>
@@ -225,14 +219,14 @@ export const Signup = ({ show }) => {
             <div className="panel panel-left">
               <h2>Already have a user?</h2>
               <InfoP>Please go to login instead</InfoP>
-              <Button onClick={onToggleClick} id="login">
+              <Button type="button" onClick={onToggleClick} id="login">
                 Login
               </Button>
             </div>
             <div className="panel panel-right">
               <h2>Don't have an account?</h2>
               <InfoP>Click on signup to create one</InfoP>
-              <Button onClick={onToggleClick} id="signup">
+              <Button type="button" onClick={onToggleClick} id="signup">
                 signup
               </Button>
             </div>
