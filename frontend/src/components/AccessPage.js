@@ -31,7 +31,6 @@ export const AccessPage = () => {
 
   const onClickLogout = () => {
     dispatch(user.actions.setDeleteAccessToken(null));
-    //dispatch(user.actions.setDeleteAccessToken())
   };
 
   useEffect(() => {

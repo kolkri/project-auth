@@ -61,7 +61,6 @@ export const Signup = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    // console.log('form submitted');
     const options = {
       method: "POST",
       headers: {
@@ -97,12 +96,17 @@ export const Signup = () => {
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
         <div className="signup-container sign-up-container">
           <FormContainer onSubmit={onFormSubmit}>
-          <MobileContainer>
-            <p>Have an account already?</p>
-            <ButtonMobile type="button" onClick={onToggleClick} id="login" Mode>
-              Login
-            </ButtonMobile>
-          </MobileContainer>
+            <MobileContainer>
+              <p>Have an account already?</p>
+              <ButtonMobile
+                type="button"
+                onClick={onToggleClick}
+                id="login"
+                Mode
+              >
+                Login
+              </ButtonMobile>
+            </MobileContainer>
             <h1>Create account</h1>
             <FormP>
               Welcome! make sure to create an account to see our secret page!
@@ -125,7 +129,7 @@ export const Signup = () => {
                 className="input"
                 id="password"
                 type={!passwordShown ? "password" : "text"}
-                // required
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -148,12 +152,17 @@ export const Signup = () => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
-          <MobileContainer>
-            <p>Don't have an account?</p>
-            <ButtonMobile type="button" onClick={onToggleClick} id="signup" Mode>
-              Signup
-            </ButtonMobile>
-          </MobileContainer>
+            <MobileContainer>
+              <p>Don't have an account?</p>
+              <ButtonMobile
+                type="button"
+                onClick={onToggleClick}
+                id="signup"
+                Mode
+              >
+                Signup
+              </ButtonMobile>
+            </MobileContainer>
             <h1>Log in</h1>
             <FormP>Welcome Back!</FormP>
             <div className="input-container">

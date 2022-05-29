@@ -22,7 +22,7 @@ The option to upload an image on the access page is a stretch goal.
 ## View it live
 
 Frontend:
-https://auth-project-hippos.netlify.app/signup
+https://auth-project-hippos.netlify.app/
 
 Backend:
 https://project-auth-week-20.herokuapp.com/
