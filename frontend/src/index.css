@@ -15,7 +15,7 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 30px;
 }
 
 /* ----form styling----- */
@@ -148,6 +148,7 @@ h1 {
 }
 
 input {
+  width: 220px;
   border: solid 2px #9e9e9e;
   border-radius: 6px;
   background: none;
