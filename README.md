@@ -25,4 +25,4 @@ Frontend:
 https://auth-project-hippos.netlify.app/
 
 Backend:
-https://project-auth-week-20.herokuapp.com/
+https://project-auth-week-20.herokuapp.com/loginpage
