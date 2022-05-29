@@ -48,19 +48,28 @@ export const Button = styled.button`
   }
 `;
 
+export const MobileContainer = styled.div`
+  display: none;  
+  @media (max-width: 768px) {
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+`
+
 export const ButtonMobile = styled.button`
   display: none;
   cursor: pointer;
-  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
-  color: #fff;
-  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
+  color: #1a73e8;
   font-size: 12px;
+  border:none;
+  background-color:#fff;
   letter-spacing: 1px;
   font-weight: bold;
   text-transform: uppercase;
-  border-radius: 20px;
   transition: transform 80ms ease-in;
-  padding: 12px 24px;
 
   &:active {
     transform: scale(0.95);

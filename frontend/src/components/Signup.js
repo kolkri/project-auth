@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 import visibleEye from "../Assets/visible-eye.png";
 import unVisibleEye from "../Assets/unvisible-eye.png";
 import { API_URL } from "../utils/urls";
-
 import { user } from "../reducers/user";
+
 
 import {
   SectionContainer,
   FormContainer,
   Button,
   ButtonMobile,
+  MobileContainer,
   FormP,
   InfoP,
   ErrorMessageContainer,
@@ -103,10 +104,13 @@ export const Signup = ({ show }) => {
     <SectionContainer>
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
         <div className="signup-container sign-up-container">
-          <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-            Login
-          </ButtonMobile>
           <FormContainer onSubmit={onFormSubmit}>
+          <MobileContainer>
+            <p>Have an account already?</p>
+            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+              Login
+            </ButtonMobile>
+          </MobileContainer>
             <h1>Create account</h1>
             <FormP>
               Welcome! make sure to create an account to see our secret page!
@@ -160,11 +164,14 @@ export const Signup = ({ show }) => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
+          <MobileContainer>
+            <p>Don't have an account?</p>
             <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-              signup
+              Signup
             </ButtonMobile>
-            <h1>Login</h1>
-            <FormP>Welcome Back!</FormP>
+          </MobileContainer>
+            <h1>Log in</h1>
+            <FormP>some text here</FormP>
             <div className="input-container">
               <input
                 className="input"
