@@ -102,6 +102,7 @@ export const ErrorMessageContainer = styled.div`
   padding: 20px;
 
   @media (max-width: 768px) {
+    bottom: 30px;
     padding: 0;
   }
 `;
@@ -109,6 +110,7 @@ export const ErrorMessageContainer = styled.div`
 export const ErrorMessage = styled.p`
   color: red;
   align-self: flex-end;
+  text-align: center;
 `;
 
 export const ShowPassword = styled.div`
