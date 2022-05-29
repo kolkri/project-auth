@@ -7,11 +7,11 @@
 body {
   background-image: url("./Assets/background.svg");
   width: 100vw;
-  /* object-fit: cover; */
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
   height: 100%;
+  overflow: hidden;
 }
 
 h1 {
@@ -91,8 +91,8 @@ h1 {
 }
 
 .overlay {
-  background: -webkit-linear-gradient(135deg, #99b3d6 10%, #1a73e8 100%);
-  background-image: linear-gradient(135deg, #99b3d6 10%, #1a73e8 100%);
+  background: -webkit-linear-gradient(135deg, #4b5b7c 10%, #c0afe9 100%);
+  background-image: linear-gradient(135deg, #4b5b7c 10%, #c0afe9 100%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -170,7 +170,7 @@ input:hover,
 input:valid,
 .input:focus {
   outline: none;
-  border: 2px solid #1a73e8;
+  border: 2px solid #b2a2d8;
 }
 
 input:valid ~ label,
@@ -178,7 +178,7 @@ input:valid ~ label,
   transform: translateY(-50%) scale(0.8);
   background-color: #fff;
   padding: 0 0.2em;
-  color: #2196f3;
+  color: #b2a2d8;
 }
 
 /* ----mobile media queries----- */

@@ -23,9 +23,9 @@ export const FormContainer = styled.form`
 
 export const Button = styled.button`
   cursor: pointer;
-  background-color: ${(props) => (props.Mode ? "#1a73e8" : "transparent")};
+  background-color: ${(props) => (props.Mode ? "#b2a2d8" : "transparent")};
   color: #fff;
-  border: 3px solid ${(props) => (props.Mode ? "#1a73e8" : "#fff")};
+  border: 3px solid ${(props) => (props.Mode ? "#b2a2d8" : "#fff")};
   font-size: 12px;
   letter-spacing: 1px;
   font-weight: bold;
@@ -49,23 +49,24 @@ export const Button = styled.button`
 `;
 
 export const MobileContainer = styled.div`
-  display: none;  
+  display: none;
+
   @media (max-width: 768px) {
     display: flex;
-    width:100%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     margin: 20px;
   }
-`
+`;
 
 export const ButtonMobile = styled.button`
   display: none;
   cursor: pointer;
   color: #1a73e8;
   font-size: 12px;
-  border:none;
-  background-color:#fff;
+  border: none;
+  background-color: #fff;
   letter-spacing: 1px;
   font-weight: bold;
   text-transform: uppercase;
@@ -120,9 +121,10 @@ export const EyeSymbol = styled.img`
   position: absolute;
   top: -5px;
   left: 1px;
+  opacity: 0.5;
 
   &:active,
   &:hover {
-    opacity: 0.5;
+    opacity: 1;
   }
 `;

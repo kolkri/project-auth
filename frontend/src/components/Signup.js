@@ -7,7 +7,6 @@ import unVisibleEye from "../Assets/unvisible-eye.png";
 import { API_URL } from "../utils/urls";
 import { user } from "../reducers/user";
 
-
 import {
   SectionContainer,
   FormContainer,
@@ -23,9 +22,8 @@ import {
   EyeSymbol,
 } from "../styledComponents/styledSignup";
 
-export const Signup = ({ show }) => {
+export const Signup = () => {
   const [username, setUsername] = useState("");
-  // // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [switchMode, setSwitchMode] = useState("login");
@@ -38,7 +36,7 @@ export const Signup = ({ show }) => {
   const navigate = useNavigate();
 
   const togglePassword = () => {
-    console.log('togglepassword activates')
+    console.log("togglepassword activates");
     setPasswordShown(!passwordShown);
   };
 
@@ -62,7 +60,7 @@ export const Signup = ({ show }) => {
   }, [accessToken, navigate]);
 
   const onFormSubmit = (e) => {
-    console.log('formsubmission activates')
+    console.log("formsubmission activates");
     e.preventDefault();
     // console.log('form submitted');
     const options = {
@@ -70,7 +68,6 @@ export const Signup = ({ show }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      // body: JSON.stringify({ username, email, password }),
       body: JSON.stringify({ username, password }),
     };
 
@@ -81,22 +78,16 @@ export const Signup = ({ show }) => {
           batch(() => {
             dispatch(user.actions.setUserId(data.response.userId));
             dispatch(user.actions.setUsername(data.response.username));
-            // dispatch(user.actions.setEmail(data.response.email));
             dispatch(user.actions.setAccessToken(data.response.accessToken));
             dispatch(user.actions.setError(null));
-            // dispatch(
-            //   user.actions.setPasswordShown(data.response.passwordShown)
-            // );
           });
         } else {
           setErrorMessage(data.response);
           batch(() => {
             dispatch(user.actions.setUserId(null));
             dispatch(user.actions.setUsername(null));
-            // dispatch(user.actions.setEmail(null));
             dispatch(user.actions.setAccessToken(null));
             dispatch(user.actions.setError(data.response));
-            // dispatch(user.actions.setPasswordShown(null));
           });
         }
       });
@@ -107,12 +98,12 @@ export const Signup = ({ show }) => {
       <div className={`container ${isPanelActive ? "right-panel-active" : ""}`}>
         <div className="signup-container sign-up-container">
           <FormContainer onSubmit={onFormSubmit}>
-          <MobileContainer>
-            <p>Have an account already?</p>
-            <ButtonMobile onClick={onToggleClick} id="login" Mode>
-              Login
-            </ButtonMobile>
-          </MobileContainer>
+            <MobileContainer>
+              <p>Have an account already?</p>
+              <ButtonMobile onClick={onToggleClick} id="login" Mode>
+                Login
+              </ButtonMobile>
+            </MobileContainer>
             <h1>Create account</h1>
             <FormP>
               Welcome! make sure to create an account to see our secret page!
@@ -130,19 +121,11 @@ export const Signup = ({ show }) => {
                 Username
               </label>
             </div>
-            {/* <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /> */}
             <div className="input-container">
               <input
                 className="input"
                 id="password"
                 type={!passwordShown ? "password" : "text"}
-                show={show}
                 // required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -166,14 +149,14 @@ export const Signup = ({ show }) => {
         </div>
         <div className="signup-container login-container">
           <FormContainer onSubmit={onFormSubmit}>
-          <MobileContainer>
-            <p>Don't have an account?</p>
-            <ButtonMobile onClick={onToggleClick} id="signup" Mode>
-              Signup
-            </ButtonMobile>
-          </MobileContainer>
+            <MobileContainer>
+              <p>Don't have an account?</p>
+              <ButtonMobile onClick={onToggleClick} id="signup" Mode>
+                Signup
+              </ButtonMobile>
+            </MobileContainer>
             <h1>Log in</h1>
-            <FormP>some text here</FormP>
+            <FormP>Welcome Back!</FormP>
             <div className="input-container">
               <input
                 className="input"
@@ -186,18 +169,10 @@ export const Signup = ({ show }) => {
                 Username
               </label>
             </div>
-            {/* <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /> */}
             <div className="input-container">
               <input
                 className="input"
                 type={passwordShown ? "text" : "password"}
-                show={show}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

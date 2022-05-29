@@ -7,7 +7,7 @@ import { AccessPage } from "./components/AccessPage";
 import { Signup } from "./components/Signup";
 import { NotFound } from "./components/NotFound";
 
-import {user} from "./reducers/user";
+import { user } from "./reducers/user";
 
 const reducer = combineReducers({
   user: user.reducer,

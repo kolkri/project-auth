@@ -21,17 +21,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  // email: {
-  //   type: String,
-  //   // required: true,
-  //   // pattern: "@mongodb.com$",
-  //   // description: "must be a string and match the regular expression pattern",
-  //   unique: true,
-  // },
   password: {
     type: String,
     required: true,
-    // lowercase: true,
   },
   accessToken: {
     type: String,
@@ -88,7 +80,6 @@ app.get("/loginpage", (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  // const { username, email, password } = req.body;
   const { username, password } = req.body;
 
   try {
@@ -100,7 +91,6 @@ app.post("/signup", async (req, res) => {
 
     const newUser = await new User({
       username,
-      // email,
       password: bcrypt.hashSync(password, salt),
     }).save();
 
@@ -108,7 +98,6 @@ app.post("/signup", async (req, res) => {
       response: {
         userId: newUser._id,
         username: newUser.username,
-        // email: newUser.email,
         accessToken: newUser.accessToken,
       },
       success: true,
@@ -131,7 +120,6 @@ app.post("/login", async (req, res) => {
         response: {
           userId: userToFind._id,
           username: userToFind.username,
-          // email: userToFind.email,
           accessToken: userToFind.accessToken,
         },
         success: true,
